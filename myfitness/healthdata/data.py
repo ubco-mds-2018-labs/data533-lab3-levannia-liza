@@ -17,7 +17,7 @@ class Person:
         Return: name, age, and gender"""
         
         # display the name, age, and gender of initialized object
-        print("Name: {}, Age: {}, Gender: {}". format(self.name, self.age, self.gender))
+        return "Name: {}, Age: {}, Gender: {}". format(self.name, self.age, self.gender)
 
 class healthdata(Person): 
     def __init__(self, name, age, gender, file):
