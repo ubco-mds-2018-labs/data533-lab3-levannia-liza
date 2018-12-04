@@ -2,7 +2,7 @@ import unittest
 from maxMinTestModule import TestmaxMin
 from tableTestModule import Testtable
 
-def my_suite():
+def myFitness_suite():
     suite = unittest.TestSuite()
     result = unittest.TestResult()
     suite.addTest(unittest.makeSuite(TestmaxMin))
@@ -10,4 +10,4 @@ def my_suite():
     runner = unittest.TextTestRunner()
     print(runner.run(suite))
 
-my_suite()
+myFitness_suite()

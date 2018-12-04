@@ -1,36 +1,52 @@
 import unittest
+import pandas as pd
 from myfitness.summary import maxmin
 
 class TestmaxMin(unittest.TestCase):
-    # Define a class variable that determines if setUp was ever run
-    ClassIsSetup = False
-    ClassIsTornDown = False
-
-    def setUp(self):
-        # If it was not setup yet, do it
-        if not self.ClassIsSetup:
-            print "Initializing testing environment"
-            self.setupClass()
-            self.__class__.ClassIsSetup = True
 
     @classmethod
-    def setupClass(cls):
-        unittest.TestCase.setUp(cls)
-        ## do set up work here ##
+    def setUpClass(cls):
+        print("Starting TestmaxMin")
+        testdata = {'Start': ['2017-02-12 0:00', '2017-02-13 0:00', '2017-02-14 0:00', '2017-03-05 0:00', '2017-03-06 0:00', '2017-03-07 0:00', '2017-04-20 0:00', '2017-04-21 0:00', '2017-04-22 0:00', '2017-04-23 0:00'],
+                    'Finish': ['2017-02-13 0:00', '2017-02-14 0:00' , '2017-02-15 0:00', '2017-03-06 0:00', '2017-03-07 0:00', '2017-03-08 0:00', '2017-04-21 0:00', '2017-04-22 0:00', '2017-04-23 0:00', '2017-04-24 0:00'],
+                    'Distance (mi)': [0.559,2.591,1.422,1.0797,2.614,2.225,3.295,2.276,3.995,2.611],
+                    'Steps (count)': [1180, 5353, 3055, 2365, 5270, 4673, 6820, 4751, 9647, 6806]}
+        cls.testdf = pd.DataFrame(testdata)
+
+    def setUp(self):
+        super().setUp()
+        print(self.__class__())
 
     def test_getMax(self):
-        ## do get max tests here ##
+        maxref = pd.Series({'Start': '2017-04-22 0:00', 'Finish': '2017-04-23 0:00', 'Distance (mi)': 3.995, 'Steps (count)': 9647})
+        # Verify the datatype 'object' is returned
+        self.assertEqual(maxmin.getMax(self.testdf).dtypes, 'O' )
+        # Verify Start value for index with max steps
+        self.assertEqual(maxmin.getMax(self.testdf).loc['Start'],maxref.loc['Start'])
+        # Verify Finish value for index with max steps
+        self.assertEqual(maxmin.getMax(self.testdf).loc['Finish'],maxref.loc['Finish'])
+        # Verify Distance value for index with max steps
+        self.assertEqual(maxmin.getMax(self.testdf).loc['Distance (mi)'],maxref.loc['Distance (mi)'])
+        # Verifty maximum steps were correctly found
+        self.assertEqual(maxmin.getMax(self.testdf).loc['Steps (count)'],maxref.loc['Steps (count)'])
 
     def test_getMin(self):
-        ## do get min tests here ##
+        minref = pd.Series({'Start': '2017-02-12 0:00', 'Finish': '2017-02-13 0:00', 'Distance (mi)': 0.559,'Steps (count)': 1180})
+        # Verify the datatype 'object' is returned
+        self.assertEqual(maxmin.getMin(self.testdf).dtypes, 'O')
+        # Verify Start value for index with max steps
+        self.assertEqual(maxmin.getMin(self.testdf).loc['Start'],minref.loc['Start'])
+        # Verify Finish value for index with max steps
+        self.assertEqual(maxmin.getMin(self.testdf).loc['Finish'],minref.loc['Finish'])
+        # Verify Distance value for index with max steps
+        self.assertEqual(maxmin.getMin(self.testdf).loc['Distance (mi)'],minref.loc['Distance (mi)'])
+        # Verifty maximum steps were correctly found
+        self.assertEqual(maxmin.getMin(self.testdf).loc['Steps (count)'],minref.loc['Steps (count)'])
 
     def tearDown(self):
-        # If it was not torn down yet, do it
-        if not self.ClassIsTornDown:
-            print "Tearing down testing environment"
-            self.tearDownClass()
-            self.__class__.ClassIsTornDown = True
+        super().tearDown()
 
     @classmethod
     def tearDownClass(cls):
-        unittest.TestCase.tearDown(cls)
+        del cls.testdf
+        print("Finished TestmaxMin")
