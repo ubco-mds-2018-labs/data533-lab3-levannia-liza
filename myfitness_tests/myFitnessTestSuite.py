@@ -11,7 +11,7 @@ def myFitness_suite():
     suite.addTest(unittest.makeSuite(TestmaxMin))
     suite.addTest(unittest.makeSuite(Testtable))
     suite.addTest(unittest.makeSuite(TestChart))
-    suite.addTest(unittest.makeSuite(TestData))
+    suite.addTest(unittest.makeSuite(TestDataPerson))
     runner = unittest.TextTestRunner()
     print(runner.run(suite))
 
