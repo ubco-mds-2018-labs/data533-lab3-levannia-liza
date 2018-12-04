@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[10]:
-
-
 import unittest
 import pandas as pd
 
@@ -13,11 +7,13 @@ class TestDataPerson(unittest.TestCase):
     
     @classmethod
     def setUpClass(cls):
-        print("Initializing testing environment")
+        print("Starting TestData")
+        cls.p1 = data.Person('Liza', 30, 'F')
+        cls.healthdata_p1 = data.healthdata('Liza', 30, 'F', "Health Data.csv")
         
     def setUp(self):
-        self.p1 = data.Person('Liza', 30, 'F')
-        self.healthdata_p1 = data.healthdata('Liza', 30, 'F', "Health Data.csv")
+        super().setUp()
+        print(self.__class__())
 
     def test_data(self): 
         #Tests for data module
@@ -42,10 +38,10 @@ class TestDataPerson(unittest.TestCase):
         
         
     def tearDown(self):
-            del(self.p1)
-            del(self.healthdata_p1)
+        super().tearDown()
             
     @classmethod
     def tearDownClass(cls):
-        print("Tearing Down Testing Environment")
-
+        del(cls.p1)
+        del(cls.healthdata_p1)
+        print("Finished TestData")

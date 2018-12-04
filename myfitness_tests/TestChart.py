@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[1]:
-
-
 import unittest
 import pandas as pd
 import pygal 
@@ -16,14 +10,14 @@ class TestChart (unittest.TestCase):
     
     @classmethod
     def setUpClass(cls):
-        print("Initializing testing environment")
-
-    def setUp(self):
-        unittest.TestCase.setUp(self)
-        ## do set up work here ##
+        print("Starting TestChart")
         columnX = ['A','B','C','D','E']
         columnY = [1,2,3,4,5]
-        self.testchart = chart.chart(columnX, columnY, 'letters', 'numbers')
+        cls.testchart = chart.chart(columnX, columnY, 'letters', 'numbers')
+
+    def setUp(self):
+        super().setUp()
+        print(self.__class__())
 
     def test_chart(self): 
         #do chart tests here 
@@ -44,10 +38,9 @@ class TestChart (unittest.TestCase):
         self.assertEqual(self.testchart.x_labels, ['A','B','C','D','E'])
 
     def tearDown(self):
-        del(self.testchart)
+        super().tearDown()
             
     @classmethod
     def tearDownClass(cls):
-        print("Tearing Down Testing Environment")
-        
-
+        del(cls.testchart)
+        print("Finished TestChart")
