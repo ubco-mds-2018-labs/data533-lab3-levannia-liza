@@ -1,4 +1,4 @@
-# data533_lab2
+# data533_lab3
 
 ## Package Topic Selection
 
@@ -69,6 +69,10 @@ Detailed descriptions  of the `maxMin` module in the `summary` subpackage is sho
 | -------------  |:------------------------------------------------------------------:   | :----------------:|:-----------------------:|
 | `getMax`     | Find the maximum number of steps in the data and the date it was achieved. | data: Pandas DataFrame containing Apple Health data imported from a .csv file.|The row of values for when the maximum number of steps were achieved:Start date, Finish date,Distance(mi), Steps (count)|
 | `getMin`      |Find the maximum number of steps in the data and the date it was achieved.|data: Pandas DataFrame containing Apple Health data imported from a.csv file. |The row of values for when the maximum number of steps were achieved:Start date, Finish date, Distance(mi), Steps (count)| 
+
+## Testing
+
+`myfitness_tests` contains the necessary test suite and classes to verify that the package is working correctly. There are a total of four classes that conduct unit testing as well as the suite. 
 
 ## Requirements 
 
