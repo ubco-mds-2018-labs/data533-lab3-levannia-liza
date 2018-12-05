@@ -20,7 +20,11 @@ def chart(columnX, columnY, xlabel, ylabel):
     bar_chart.x_title = xlabel
     bar_chart.y_title = ylabel
 
+    bar_chart.render_in_browser()
+    
     # render bar chart to file and brower for viewing
     bar_chart.render_to_file('my_fitness_data.svg')
+    
+    return bar_chart
 
-    bar_chart.render_in_browser()
+    
