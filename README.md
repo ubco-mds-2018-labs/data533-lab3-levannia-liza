@@ -35,7 +35,7 @@ The package written is titled `myfitness`
 
 ## Package Details
 
-The package functions of `myfitness` are described below. The use of the package is also demonstrated in the test file included in this repositry. The `myfitnesstests` folder contains the test files for the packages. 
+The package functions of `myfitness` are described below. The use of the package is also demonstrated in the test file included in this repositry.
 
 `healthdata`
 This subpackage is meant to provide users a method of importing data as well as viewing the data interactively. 
