@@ -80,4 +80,5 @@ This package requires the following Python modules:
 
 - numpy
 - pandas 
-- pygal 
+- pygal
+- IPython
